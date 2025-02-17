@@ -93,7 +93,7 @@
 
 @font-face {
   font-family: 'Conthrax';
-  src: url('fonts/Conthrax-SemiBold.otf') format('opentype');
+  src: url('font/Conthrax-SemiBold.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
 }
