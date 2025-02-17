@@ -78,6 +78,18 @@
   --bs-code-color: #d63384;
   --bs-highlight-bg: #3d3d3d;
 }
+.carousel-control-prev,
+.carousel-control-next {
+    filter: invert(100%); /* Inverts the default white color */
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: rgb(0, 0, 0); /* Change button color */
+    border-radius: 50%; /* Optional: make it circular */
+    padding: 10px;
+}
+
 
 *,
 *::before,
