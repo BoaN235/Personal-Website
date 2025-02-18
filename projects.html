@@ -35,7 +35,8 @@
             </div>
         </nav>
 
-            <div id="carouselExample" class="carousel slide">
+        <div id="carouselExample" class="carousel slide sticky-top " style="height: 75vh;">
+
                 <div class="carousel-inner">
                   <div class="carousel-item active">
                     <section class="page-section about-heading">
@@ -57,6 +58,10 @@
                                             </p>
                                         </div>
                                     </div>
+                                </div>
+                                <div id="hephaestus-log" class="log-content mt-4 p-3 bg-light border rounded" style="max-height: 70vh; overflow-y: auto;">
+                                    <h3>Development Log</h3>
+                                    <article id="log-content" class="markdown-body">Loading...</article>
                                 </div>
                             </div>
                         </div>
@@ -105,7 +110,7 @@
                                                 <p>Legitimate Salvage is a custom macropad. The PCB, Case And Firmware was all made custom for this macropad
                                                     This is the first hardware project I particpated in for Hack club
                                                 </p>
-            
+
                                             </p>
                                         </div>
                                     </div>
@@ -125,14 +130,44 @@
               </div>
         </section>
         <footer class="footer text-faded text-center py-5">
-            <div class="container"><p class="m-0 small"></p></div>
+            
+            <div class="container"><p class="m-0 small"></p>
+            </div>
         </footer>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.1.0/github-markdown-light.min.css" />
+        <script src="https://cdn.jsdelivr.net/npm/showdown/dist/showdown.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const logContainer = document.getElementById("log-content");
+        
+                fetch("https://raw.githubusercontent.com/BoaN235/hephaestus-3D-printer/main/LOG.md")
+                    .then(response => response.text())
+                    .then(markdown => {
+                        let converter = new showdown.Converter({
+                            tables: true,       // Enable GitHub-style tables
+                            ghCodeBlocks: true, // Enable GitHub-style code blocks
+                            strikethrough: true,
+                            tasklists: true,
+                            simpleLineBreaks: true,
+                            emoji: true
+                        });
+        
+                        let html = converter.makeHtml(markdown);
+                        logContainer.innerHTML = html;
+                    })
+                    .catch(error => {
+                        logContainer.innerHTML = "<p>Failed to load log file.</p>";
+                        console.error("Error fetching log:", error);
+                    });
+            });
+        </script>
+        
     </body>
 </html>
